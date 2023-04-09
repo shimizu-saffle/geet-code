@@ -1,10 +1,10 @@
-void main() {
-  int diffMaxMin(List<int> numbers) {
-    final sortedNum = numbers..sort();
-    return sortedNum.last - sortedNum.first;
-  }
+import 'dart:math';
 
-  final numbers = [1, 2, 3];
+void main() {
+  int diffMaxMin(List<int> numbers) =>
+      numbers.isEmpty ? 0 : numbers.reduce(max) - numbers.reduce(min);
+
+  final numbers = [100, 1, 50];
 
   print(diffMaxMin(numbers));
 }
