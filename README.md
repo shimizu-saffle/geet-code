@@ -18,4 +18,4 @@ LeetCode で最も難易度の低い問題よりも、ずっと難易度の低�
 
 ## ShareGPT
 
-<https://shareg.pt/zkNugcB>
+<https://sharegpt.com/c/puaQS0N>
