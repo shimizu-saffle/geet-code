@@ -1,5 +1,3 @@
-#!/kentashimizu/bin/env python
-
 from typing import List
 
 def diffMaxMin(numbers: List[int]) -> int:
