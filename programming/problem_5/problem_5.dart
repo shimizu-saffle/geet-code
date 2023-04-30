@@ -1,6 +1,6 @@
 void main() {
   Map<String, int>? expandAroundCenter({
-    required List strList,
+    required List<String> strList,
     required int leftIndex,
     required int rightIndex,
   }) {
@@ -62,14 +62,9 @@ void main() {
         rightIndex: i + 1,
       );
       if (indexMap != null) {
-        final leftIndex = indexMap['leftIndex']!;
-        final rightIndex = indexMap['rightIndex']!;
-
-        final palindromeSubstringList =
-            strList.sublist(leftIndex, rightIndex + 1);
-        final palindromeSubstring = palindromeSubstringList.fold(
-            '', (previous, current) => previous + current);
-
+        final palindromeSubstring = strList
+            .sublist(indexMap['leftIndex']!, indexMap['rightIndex']! + 1)
+            .fold('', (previous, current) => previous + current);
         if (longestPalindromeSubstring.length < palindromeSubstring.length) {
           longestPalindromeSubstring = palindromeSubstring;
         }
@@ -80,5 +75,7 @@ void main() {
         : longestPalindromeSubstring;
   }
 
-  print(findLongestPalindromeSubstring('abazzzzzzzzzzzzzzzzzzzzzzzzzzzz'));
+  print(
+    findLongestPalindromeSubstring('abacdcbeebdbefaafbefdbbeabcdedcbaebdcacba'),
+  );
 }
