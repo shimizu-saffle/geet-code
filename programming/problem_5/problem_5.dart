@@ -1,5 +1,5 @@
 void main() {
-  // 与えられた中心を基準に回文を展開し、左右のインデックスを返す関数
+  /// 与えられた中心を基準に回文を展開し、左右のインデックスを返す関数
   Map<String, int>? expandAroundCenter({
     required List<String> strList,
     required int leftIndex,
@@ -24,37 +24,45 @@ void main() {
     };
   }
 
-  // 与えられた文字列内で最長の回文部分文字列を見つける関数
+  /// 与えられた文字列内で最長の回文部分文字列を見つける関数
   String? findLongestPalindromeSubstring(String str) {
     final strList = str.split('');
     var longestPalindromeSubstring = '';
+
     // 文字列の各文字とその隣の文字の間を中心に、奇数長と偶数長の回文を探す
-    for (var i = 0; i < strList.length; i++) {
-      for (var j = 0; j < 2; j++) {
-        final indexMap = expandAroundCenter(
-          strList: strList,
-          leftIndex: i,
-          rightIndex: i + j,
-        );
+    // i の範囲を 0 から 2 * strList.length - 1として、奇数長と偶数長の回文を1つのループで探索
+    for (var i = 0; i < 2 * strList.length - 1; i++) {
+      // i が偶数の場合、leftIndex と rightIndex が同じ値になり、奇数長の回文を探す
+      // i が奇数の場合、rightIndex が leftIndex より1大きい値になり、偶数長の回文を探す
+      final leftIndex = i ~/ 2;
+      final rightIndex = leftIndex + i % 2;
 
-        if (indexMap != null) {
-          // 回文部分文字列を取得し、最長のものを更新する
-          final palindromeSubstring = strList
-              .sublist(indexMap['leftIndex']!, indexMap['rightIndex']! + 1)
-              .join('');
+      // leftIndex と rightIndex を中心として回文部分文字列を探す
+      final indexMap = expandAroundCenter(
+        strList: strList,
+        leftIndex: leftIndex,
+        rightIndex: rightIndex,
+      );
 
-          if (longestPalindromeSubstring.length < palindromeSubstring.length) {
-            longestPalindromeSubstring = palindromeSubstring;
-          }
+      if (indexMap != null) {
+        // 回文部分文字列を取得し、最長のものを更新する
+        final palindromeSubstring = strList
+            .sublist(indexMap['leftIndex']!, indexMap['rightIndex']! + 1)
+            .join('');
+        if (longestPalindromeSubstring.length < palindromeSubstring.length) {
+          longestPalindromeSubstring = palindromeSubstring;
         }
       }
     }
+
     return longestPalindromeSubstring.isEmpty
         ? null
         : longestPalindromeSubstring;
   }
 
   print(
-    findLongestPalindromeSubstring('abacdcbeebdbefaafbefdbbeabcdedcbaebdcacba'),
+    findLongestPalindromeSubstring(
+      'abacdcbeebdbefaafbefdbbeabcdeedcbaebdcacba',
+    ),
   );
 }
