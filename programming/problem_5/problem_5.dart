@@ -15,7 +15,6 @@ void main() {
 
     for (var i = 1; i < strList.length; i++) {
       if (decrementedLeftIndex < 0 || strList.length <= incrementedRightIndex) {
-        // 0, 8 で break しちゃってる
         break;
       }
       if (strList[decrementedLeftIndex] == strList[incrementedRightIndex]) {
@@ -43,10 +42,20 @@ void main() {
     return null;
   }
 
+  bool compareNextElement(List list, int index) {
+    if (index >= list.length - 1) {
+      return false;
+    }
+    return list[index] == list[index + 1];
+  }
+
   String? findLongestPalindromeSubstring(String str) {
     final strList = str.split('');
     var longestPalindromeSubstring = '';
     for (var i = 1; i < strList.length; i++) {
+      if (compareNextElement(strList, i)) {
+        continue;
+      }
       final indexMap = expandAroundCenter(
         strList: strList,
         leftIndex: i - 1,
@@ -71,5 +80,5 @@ void main() {
         : longestPalindromeSubstring;
   }
 
-  print(findLongestPalindromeSubstring('abcdedcba'));
+  print(findLongestPalindromeSubstring('abazzzzzzzzzzzzzzzzzzzzzzzzzzzz'));
 }
