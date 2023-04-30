@@ -9,7 +9,7 @@ void main() {
     int? currentLeftIndex;
     int? currentRightIndex;
 
-    if (leftIndex <= 0 || strList.length <= rightIndex) {
+    if (leftIndex < 0 || strList.length <= rightIndex) {
       return null;
     }
 
@@ -54,10 +54,12 @@ void main() {
       if (indexMap != null) {
         final leftIndex = indexMap['leftIndex']!;
         final rightIndex = indexMap['rightIndex']!;
+
         final palindromeSubstringList =
             strList.sublist(leftIndex, rightIndex + 1);
         final palindromeSubstring = palindromeSubstringList.fold(
             '', (previous, current) => previous + current);
+
         if (longestPalindromeSubstring.length < palindromeSubstring.length) {
           longestPalindromeSubstring = palindromeSubstring;
         }
@@ -68,5 +70,5 @@ void main() {
         : longestPalindromeSubstring;
   }
 
-  print(findLongestPalindromeSubstring('abadedfded'));
+  print(findLongestPalindromeSubstring('aba'));
 }
