@@ -14,7 +14,8 @@ void main() {
     }
 
     for (var i = 1; i < strList.length; i++) {
-      if (decrementedLeftIndex < 1 || strList.length <= incrementedRightIndex) {
+      if (decrementedLeftIndex < 0 || strList.length <= incrementedRightIndex) {
+        // 0, 8 で break しちゃってる
         break;
       }
       if (strList[decrementedLeftIndex] == strList[incrementedRightIndex]) {
@@ -70,5 +71,5 @@ void main() {
         : longestPalindromeSubstring;
   }
 
-  print(findLongestPalindromeSubstring('aba'));
+  print(findLongestPalindromeSubstring('abcdedcba'));
 }
