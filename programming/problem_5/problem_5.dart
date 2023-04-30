@@ -1,72 +1,51 @@
 void main() {
+  // 与えられた中心を基準に回文を展開し、左右のインデックスを返す関数
   Map<String, int>? expandAroundCenter({
     required List<String> strList,
     required int leftIndex,
     required int rightIndex,
   }) {
-    int decrementedLeftIndex = leftIndex - 1;
-    int incrementedRightIndex = rightIndex + 1;
-    int? currentLeftIndex;
-    int? currentRightIndex;
-
     if (leftIndex < 0 || strList.length <= rightIndex) {
       return null;
     }
 
-    for (var i = 1; i < strList.length; i++) {
-      if (decrementedLeftIndex < 0 || strList.length <= incrementedRightIndex) {
-        break;
-      }
-      if (strList[decrementedLeftIndex] == strList[incrementedRightIndex]) {
-        currentLeftIndex = decrementedLeftIndex;
-        currentRightIndex = incrementedRightIndex;
-        decrementedLeftIndex--;
-        incrementedRightIndex++;
-      }
+    // 左右のインデックスを境界内で展開し、回文である限り続ける
+    while (leftIndex >= 0 &&
+        rightIndex < strList.length &&
+        strList[leftIndex] == strList[rightIndex]) {
+      leftIndex--;
+      rightIndex++;
     }
 
-    if (currentLeftIndex != null && currentRightIndex != null) {
-      return {
-        'leftIndex': currentLeftIndex,
-        'rightIndex': currentRightIndex,
-      };
-    }
-
-    if (strList[leftIndex] == strList[rightIndex]) {
-      return {
-        'leftIndex': leftIndex,
-        'rightIndex': rightIndex,
-      };
-    }
-
-    return null;
+    // 最終的な左右のインデックスを返す
+    return {
+      'leftIndex': leftIndex + 1,
+      'rightIndex': rightIndex - 1,
+    };
   }
 
-  bool compareNextElement(List list, int index) {
-    if (index >= list.length - 1) {
-      return false;
-    }
-    return list[index] == list[index + 1];
-  }
-
+  // 与えられた文字列内で最長の回文部分文字列を見つける関数
   String? findLongestPalindromeSubstring(String str) {
     final strList = str.split('');
     var longestPalindromeSubstring = '';
-    for (var i = 1; i < strList.length; i++) {
-      if (compareNextElement(strList, i)) {
-        continue;
-      }
-      final indexMap = expandAroundCenter(
-        strList: strList,
-        leftIndex: i - 1,
-        rightIndex: i + 1,
-      );
-      if (indexMap != null) {
-        final palindromeSubstring = strList
-            .sublist(indexMap['leftIndex']!, indexMap['rightIndex']! + 1)
-            .fold('', (previous, current) => previous + current);
-        if (longestPalindromeSubstring.length < palindromeSubstring.length) {
-          longestPalindromeSubstring = palindromeSubstring;
+    // 文字列の各文字とその隣の文字の間を中心に、奇数長と偶数長の回文を探す
+    for (var i = 0; i < strList.length; i++) {
+      for (var j = 0; j < 2; j++) {
+        final indexMap = expandAroundCenter(
+          strList: strList,
+          leftIndex: i,
+          rightIndex: i + j,
+        );
+
+        if (indexMap != null) {
+          // 回文部分文字列を取得し、最長のものを更新する
+          final palindromeSubstring = strList
+              .sublist(indexMap['leftIndex']!, indexMap['rightIndex']! + 1)
+              .join('');
+
+          if (longestPalindromeSubstring.length < palindromeSubstring.length) {
+            longestPalindromeSubstring = palindromeSubstring;
+          }
         }
       }
     }
