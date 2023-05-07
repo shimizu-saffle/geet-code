@@ -24,7 +24,7 @@ void main() {
     };
   }
 
-  /// 与えられた文字列内で最長の回文部分文字列を見つける関数
+  /// 与えられた文字列内で最長の回文部分文字列を返す
   String? findLongestPalindromeSubstring(String str) {
     final strList = str.split('');
     var longestPalindromeSubstring = '';
