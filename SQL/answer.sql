@@ -1,3 +1,8 @@
+-- answer 5
+SELECT department, COUNT(*) AS number_of_employ
+FROM employees
+GROUP BY department
+
 -- answer 4
 SELECT * 
 FROM employees
