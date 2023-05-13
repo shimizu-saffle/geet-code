@@ -1,3 +1,8 @@
+-- answer 4
+SELECT * 
+FROM employees
+WHERE department = 'Engineering'
+
 -- answer 3
 SELECT first_name, last_name
 FROM employees
