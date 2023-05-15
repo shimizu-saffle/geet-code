@@ -1,8 +1,13 @@
+-- answer 7
+SELECT d.department_name, AVG(e.salary) AS average_salary
+FROM employees AS e
+JOIN departments AS d ON e.department_id = d.id
+GROUP BY d.department_name;
+
 -- answer 6
 SELECT e.first_name, e.last_name, d.department_name
 FROM employees AS e
-JOIN departments AS d
-ON e.department_id = d.id
+JOIN departments AS d ON e.department_id = d.id
 
 -- answer 5
 SELECT department, COUNT(*) AS number_of_employ
