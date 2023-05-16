@@ -1,3 +1,9 @@
+-- answer 8
+SELECT COUNT(*) as new_employees_count,
+FROM employees
+WHERE DATE_PART('year', hire_date) = DATE_PART('year', CURRENT_DATE)
+AND DATE_PART('month', hire_date) = DATE_PART('month', CURRENT_DATE);
+
 -- answer 7
 SELECT d.department_name, AVG(e.salary) AS average_salary
 FROM employees AS e
