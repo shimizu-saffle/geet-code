@@ -1,5 +1,11 @@
+-- answer 9
+SELECT
+    SUM(CASE WHEN gender = 'M' THEN 1 ELSE 0 END) as male_count, 
+    SUM(CASE WHEN gender = 'F' THEN 1 ELSE 0 END) as female_count
+FROM employees;
+
 -- answer 8
-SELECT COUNT(*) as new_employees_count,
+SELECT COUNT(*) as new_employees_count
 FROM employees
 WHERE DATE_PART('year', hire_date) = DATE_PART('year', CURRENT_DATE)
 AND DATE_PART('month', hire_date) = DATE_PART('month', CURRENT_DATE);
