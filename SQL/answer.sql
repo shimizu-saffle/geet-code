@@ -1,3 +1,22 @@
+-- answer 10
+SELECT
+    d.department_name,
+    AVG(
+        CASE
+            WHEN gender = 'M' THEN salary
+            ELSE NULL
+        END        
+    ) AS avg_male_salary,
+    AVG(
+        CASE
+            WHEN gender = 'F' THEN salary
+            ELSE NULL
+        END
+    ) AS avg_female_salary
+FROM employees AS e
+JOIN departments AS d ON e.department_id = d.id
+GROUP BY d.department_name
+
 -- answer 9
 SELECT
     SUM(CASE WHEN gender = 'M' THEN 1 ELSE 0 END) as male_count, 
