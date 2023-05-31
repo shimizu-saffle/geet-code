@@ -1,3 +1,17 @@
+-- answer 12
+SELECT 
+    d.department_name,
+    MAX(e.salary) AS max_salary,
+    COUNT(
+        CASE
+            WHEN e.salary = MAX(e.salary) THEN e.salary
+            ELSE NULL
+        END
+    )  AS max_salary_employees_count
+FROM employees AS e
+JOIN department AS d ON e.department_id = d.id
+GROUP BY d.department_name;
+
 -- answer 10
 SELECT
     d.department_name,
@@ -15,7 +29,7 @@ SELECT
     ) AS avg_female_salary
 FROM employees AS e
 JOIN departments AS d ON e.department_id = d.id
-GROUP BY d.department_name
+GROUP BY d.department_name;
 
 -- answer 9
 SELECT
@@ -38,22 +52,22 @@ GROUP BY d.department_name;
 -- answer 6
 SELECT e.first_name, e.last_name, d.department_name
 FROM employees AS e
-JOIN departments AS d ON e.department_id = d.id
+JOIN departments AS d ON e.department_id = d.id;
 
 -- answer 5
 SELECT department, COUNT(*) AS number_of_employ
 FROM employees
-GROUP BY department
+GROUP BY department;
 
 -- answer 4
 SELECT * 
 FROM employees
-WHERE department = 'Engineering'
+WHERE department = 'Engineering';
 
 -- answer 3
 SELECT first_name, last_name
 FROM employees
-ORDER BY last_name 
+ORDER BY last_name;
 
 -- answer 2
 SELECT first_name, last_name
