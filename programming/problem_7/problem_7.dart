@@ -1,19 +1,18 @@
 void main() {
   const numbers = [1, 2, 3, 4, 5];
-  final (evenAverage, oddAverage) = eachNumberTypeAverage(numbers);
+  final (evenAverage, oddAverage) = calculateEvenAndOddAverages(numbers);
   print('oddAverage: $oddAverage');
   print('evenAverage: $evenAverage');
 }
 
-(double, double) eachNumberTypeAverage(List<int> numbers) {
-  final evenNumbers = <int>[];
-  final oddNumbers = <int>[];
-  numbers.forEach(
-    (e) => e % 2 == 0 ? evenNumbers.add(e) : oddNumbers.add(e),
-  );
+(double, double) calculateEvenAndOddAverages(List<int> numbers) {
   return (
-    calculateAverage(oddNumbers),
-    calculateAverage(evenNumbers),
+    calculateAverage(
+      numbers.where((element) => element % 2 == 0).toList(),
+    ),
+    calculateAverage(
+      numbers.where((element) => element % 2 != 0).toList(),
+    ),
   );
 }
 
