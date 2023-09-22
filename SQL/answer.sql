@@ -1,3 +1,22 @@
+-- answer 17
+SELECT * FROM users
+WHERE age >= 30
+LIMIT 2;
+
+-- answer 16
+SELECT * FROM users
+ORDER BY age ASC;
+
+-- answer 15
+SELECT * FROM users
+WHERE age >= 30;
+
+-- answer 14
+SELECT name FROM users;
+
+-- answer 13
+SELECT * FROM users;
+
 -- answer 12
 SELECT 
     d.department_name,
