@@ -1,3 +1,16 @@
+-- answer 3
+SELECT name, salary
+FROM employees
+WHERE salary >= 40000
+AND salary <= 60000
+
+-- answer 2
+SELECT name, salary FROM employees
+WHERE salary >= 50000
+
+-- answer 1
+SELECT * FROM employees
+
 -- answer 17
 SELECT * FROM users
 WHERE age >= 30
