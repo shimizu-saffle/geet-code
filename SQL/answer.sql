@@ -1,15 +1,15 @@
--- answer 3
-SELECT name, salary
-FROM employees
-WHERE salary >= 40000
-AND salary <= 60000
+-- answer 19
+SELECT name, created_at FROM (
+    SELECT name, created_at FROM products
+    UNION ALL
+    SELECT name, created_at FROM services
+) AS products_and_services
+ORDER BY created_at DESC;
 
--- answer 2
-SELECT name, salary FROM employees
-WHERE salary >= 50000
-
--- answer 1
-SELECT * FROM employees
+-- answer 18
+SELECT name, price FROM products
+UNION
+SELECT name, price FROM services;
 
 -- answer 17
 SELECT * FROM users
