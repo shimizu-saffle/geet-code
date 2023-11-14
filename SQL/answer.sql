@@ -1,3 +1,13 @@
+-- answer 20
+SELECT name, price, created_at FROM (
+    SELECT name, price, created_at FROM products
+    UNION ALL
+    SELECT name, price, created_at FROM services
+) AS products_and_services
+WHERE created_at < ?
+ORDER BY created_at DESC
+LIMIT ?;
+
 -- answer 19
 SELECT name, created_at FROM (
     SELECT name, created_at FROM products
